@@ -5,14 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class CategoryPatRes {
+@NoArgsConstructor
+public class CategoryGetRes {
 
-    private String message;
-    private LocalDateTime updatedAt;
+    private int id;
+    private String title;
+    private String msg;
 }

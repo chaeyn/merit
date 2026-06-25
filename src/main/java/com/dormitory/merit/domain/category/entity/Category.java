@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor
@@ -22,8 +22,8 @@ public class Category {
     private String title;
 
     @NotNull
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
     @NotNull
-    private LocalDate updatedAt;
+    private LocalDateTime updatedAt;
 }

@@ -1,4 +1,4 @@
-package com.dormitory.merit.global.repository;
+package com.dormitory.merit.domain.category.repository;
 
 import com.dormitory.merit.domain.category.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
     Optional<Category> findById(int Id);
     Optional<Category> findByTitle(String title);
+    Optional<Category> findAllBy();
 }
