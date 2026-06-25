@@ -1,11 +1,14 @@
 package com.dormitory.merit.domain.point.controller;
 
 import com.dormitory.merit.domain.point.dto.PointAssignReq;
+import com.dormitory.merit.domain.point.dto.PointGetRes;
 import com.dormitory.merit.domain.point.dto.PointUpdateReq;
 import com.dormitory.merit.domain.point.service.PointService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -13,6 +16,18 @@ import org.springframework.web.bind.annotation.*;
 public class PointController {
 
     private final PointService pointService;
+
+    @GetMapping
+    public ResponseEntity<List<PointGetRes>> getAll() {
+        List<PointGetRes> response = pointService.getAll();
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/students/{studentId}")
+    public ResponseEntity<List<PointGetRes>> getByStudentId(@PathVariable int studentId) {
+        List<PointGetRes> response = pointService.getByStudentId(studentId);
+        return ResponseEntity.ok(response);
+    }
 
     @PostMapping
     public ResponseEntity<Void> assign(@RequestBody PointAssignReq request) {
