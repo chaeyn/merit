@@ -1,6 +1,7 @@
 package com.dormitory.merit.domain.point.controller;
 
 import com.dormitory.merit.domain.point.dto.PointAssignReq;
+import com.dormitory.merit.domain.point.dto.PointUpdateReq;
 import com.dormitory.merit.domain.point.service.PointService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,12 @@ public class PointController {
     @DeleteMapping("/{pointId}")
     public ResponseEntity<Void> cancel(@PathVariable int pointId) {
         pointService.cancel(pointId);
+        return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping("/{pointId}")
+    public ResponseEntity<Void> update(@PathVariable int pointId, @RequestBody PointUpdateReq request) {
+        pointService.update(pointId, request);
         return ResponseEntity.ok().build();
     }
 }
