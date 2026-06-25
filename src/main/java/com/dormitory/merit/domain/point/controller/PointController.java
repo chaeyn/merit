@@ -18,4 +18,10 @@ public class PointController {
         pointService.assign(request);
         return ResponseEntity.ok().build();
     }
+
+    @DeleteMapping("/{pointId}")
+    public ResponseEntity<Void> cancel(@PathVariable int pointId) {
+        pointService.cancel(pointId);
+        return ResponseEntity.ok().build();
+    }
 }

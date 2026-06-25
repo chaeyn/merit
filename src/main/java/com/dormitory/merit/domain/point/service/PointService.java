@@ -40,6 +40,19 @@ public class PointService {
         pointRepository.save(point);
     }
 
+    public void cancel(int pointId) {
+        if (pointId <= 0) {
+            throw new IllegalArgumentException("상/벌점 부여 id는 1 이상이어야 합니다.");
+        }
+
+        Point point = pointRepository.findById(pointId)
+                .orElseThrow(() ->
+                        new IllegalArgumentException("존재하지 않는 상/벌점 부여 내역입니다.")
+                );
+
+        pointRepository.delete(point);
+    }
+
     private void validate(PointAssignReq request) {
         if (request.getStudentId() <= 0) {
             throw new IllegalArgumentException("학생 id는 1 이상이어야 합니다.");
