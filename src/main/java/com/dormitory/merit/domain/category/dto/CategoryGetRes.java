@@ -13,5 +13,4 @@ public class CategoryGetRes {
 
     private int id;
     private String title;
-    private String msg;
 }

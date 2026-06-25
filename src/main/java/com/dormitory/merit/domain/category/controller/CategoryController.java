@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/category")
@@ -33,8 +35,8 @@ public class CategoryController {
     }
 
     @GetMapping("/get")
-    public ResponseEntity<CategoryGetRes> get() {
-        CategoryGetRes res = categoryService.get();
+    public ResponseEntity<List<CategoryGetRes>> get() {
+        List<CategoryGetRes> res = categoryService.get();
         return ResponseEntity.ok(res);
     }
 }

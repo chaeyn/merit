@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -55,11 +56,14 @@ public class CategoryService {
         return new CategoryPatRes("수정 완료", LocalDateTime.now());
     }
 
-    public CategoryGetRes get() {
-        Optional<Category> result = categoryRepository.findAllBy();
-        if (!result.isEmpty()) {
-            return new CategoryGetRes(0, null, "아무런 카테고리도 존재하지 않습니다.");
+    public List<CategoryGetRes> get() {
+        List<Category> categories = categoryRepository.findAll();
+        if (categories.isEmpty()) {
+            return List.of(new CategoryGetRes(0, null));
         }
-        return new CategoryGetRes(result.get().getId(), result.get().getTitle(), "성공!");
+
+        return categories.stream()
+                .map(category -> new CategoryGetRes(category.getId(), category.getTitle()))
+                .toList();
     }
 }
